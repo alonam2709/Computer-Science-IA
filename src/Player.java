@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Player {
-    private Card[] hand;
+    public final Card[] hand;
 
     public Player() {
         hand = new Card[2]; // Player's hand (two cards in Texas Hold'em)
@@ -92,7 +92,7 @@ public class Player {
             handString += hand[0].toString();
         }
         if (hand[1] != null) {
-            handString += ", " + hand[1].toString();
+            handString += ", " + hand[1];
         }
         return handString;
     }

@@ -51,6 +51,23 @@ public class Table {
             updateRoundState();
         }
     }
+    @Override
+    public String toString() {
+        String result = "Round State: " + roundState + "\nCommunity Cards: ";
+
+        if (cardCount == 0) {
+            result += "None";
+        } else {
+            for (int i = 0; i < cardCount; i++) {
+                result += communityCards[i];
+                if (i < cardCount - 1) {
+                    result += ", ";
+                }
+            }
+        }
+
+        return result;
+    }
 
 
 }

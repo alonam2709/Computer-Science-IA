@@ -1,8 +1,7 @@
 public class Fraction {
     private long numerator;
     private long denominator;
-    public Fraction(long numerator, long denominator)
-    {
+    public Fraction(long numerator, long denominator) {
         this.setNumerator(numerator);
         this.setDenominator(denominator);
         this.cancel();
@@ -15,18 +14,16 @@ public class Fraction {
     }
 
     // calculate the GCD to simplify a fraction
-    private static long gcd(long n, long m)
-    {
-        int gcd;
-        if ( n == m )
-            gcd = (int) n;
-        else
-        {
-            while (n != m)
-            {   if ( n < m )
-                m = m - n;
-            else
-                n = n - m;
+    private static long gcd(long n, long m) {
+        long gcd;
+        if (n == m)
+            gcd = n;
+        else {
+            while (n != m) {
+                if (n < m)
+                    m = m - n;
+                else
+                    n = n - m;
             }
         }
         return n;
