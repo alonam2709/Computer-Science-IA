@@ -6,12 +6,30 @@ public class ProbabilityCalculator {
     private Deck deck;
 
     public ProbabilityCalculator(Player player, Table table, Deck deck) {
-        this.playerHand = player.hand;
-        this.communityCards = table.getCommunityCards();
+        if (player == null || table == null || deck == null) {
+            throw new IllegalArgumentException("Player, Table, and Deck cannot be null.");
+        }
+        this.player = player;
+        this.table = table;
         this.deck = deck;
+        updateHands();
+    }
+
+    private void updateHands() {
+        // Ensure that the player and table objects are not null
+        if (this.player == null || this.player.hand == null) {
+            throw new IllegalStateException("Player object or player's hand is not properly initialized.");
+        }
+        if (this.table == null || this.table.getCommunityCards() == null) {
+            throw new IllegalStateException("Table object or community cards are not properly initialized.");
+        }
+        this.playerHand = this.player.hand;
+        this.communityCards = this.table.getCommunityCards();
     }
 
     public Fraction calculateHandProbability(HandType handType) {
+        // Make sure to update hands to reflect the current state
+        updateHands();
         switch(handType) {
             case HIGH_CARD:
                 return calculateHighCardProbability();
@@ -45,10 +63,14 @@ public class ProbabilityCalculator {
         // Array to count occurrences of each card value in the player's hand and on the table
         int[] valueCounts = new int[Card.Value.values().length];
         for (Card card : playerHand) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
         for (Card card : communityCards) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
 
         // Count of favorable outcomes for getting a pair
@@ -81,10 +103,14 @@ public class ProbabilityCalculator {
         // Array to count occurrences of each card value in the player's hand and on the table
         int[] valueCounts = new int[Card.Value.values().length];
         for (Card card : playerHand) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
         for (Card card : communityCards) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
 
         // Count of favorable outcomes for getting exactly two pairs
@@ -120,11 +146,14 @@ public class ProbabilityCalculator {
         // Array to count occurrences of each card value in the player's hand and on the table
         int[] valueCounts = new int[Card.Value.values().length];
         for (Card card : playerHand) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
         for (Card card : communityCards) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
-        }
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }        }
 
         int favorableOutcomes = 0;
 
@@ -151,16 +180,21 @@ public class ProbabilityCalculator {
         // Create an array to represent a simplified deck with just the card values
         boolean[] simplifiedDeck = new boolean[Card.Value.values().length];
         for (Card card : deck.getCards()) {
+            if (card != null) {
             simplifiedDeck[Card.getValueIndex(card.getCardValue())] = true;
+            }
         }
 
         // Mark cards in player's hand and community cards as unavailable
         for (Card card : playerHand) {
-            simplifiedDeck[Card.getValueIndex(card.getCardValue())] = false;
+            if (card != null) {
+                simplifiedDeck[Card.getValueIndex(card.getCardValue())] = false;
+            }
         }
         for (Card card : communityCards) {
-            simplifiedDeck[Card.getValueIndex(card.getCardValue())] = false;
-        }
+            if (card != null) {
+                simplifiedDeck[Card.getValueIndex(card.getCardValue())] = false;
+            }        }
 
         int favorableOutcomes = 0;
 
@@ -202,10 +236,14 @@ public class ProbabilityCalculator {
         // Array to count occurrences of each suit in player's hand and community cards
         int[] suitCounts = new int[Card.Suit.values().length];
         for (Card card : playerHand) {
-            suitCounts[card.getCardSuit().ordinal()]++;
+            if (card != null) {
+                suitCounts[card.getCardSuit().ordinal()]++;
+            }
         }
         for (Card card : communityCards) {
-            suitCounts[card.getCardSuit().ordinal()]++;
+            if (card != null) {
+                suitCounts[card.getCardSuit().ordinal()]++;
+            }
         }
 
         int favorableOutcomes = 0;
@@ -232,10 +270,14 @@ public class ProbabilityCalculator {
         // Array to count occurrences of each card value in player's hand and community cards
         int[] valueCounts = new int[Card.Value.values().length];
         for (Card card : playerHand) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
         for (Card card : communityCards) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
 
         int favorableOutcomes = 0;
@@ -279,10 +321,14 @@ public class ProbabilityCalculator {
         // Array to count occurrences of each card value in player's hand and community cards
         int[] valueCounts = new int[Card.Value.values().length];
         for (Card card : playerHand) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
         for (Card card : communityCards) {
-            valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            if (card != null) {
+                valueCounts[Card.getValueIndex(card.getCardValue())]++;
+            }
         }
 
         int favorableOutcomes = 0;
@@ -308,7 +354,9 @@ public class ProbabilityCalculator {
 
         // Check for straight flush in each suit
         for (Card.Suit suit : Card.Suit.values()) {
-            favorableOutcomes += calculateStraightFlushForSuit(suit);
+            if (suit != null) {
+                favorableOutcomes += calculateStraightFlushForSuit(suit);
+            }
         }
 
         return new Fraction(favorableOutcomes, totalPossibleOutcomes);
@@ -317,20 +365,26 @@ public class ProbabilityCalculator {
     private int calculateStraightFlushForSuit(Card.Suit suit) {
         // Create a simplified deck indicating presence of cards in the specified suit
         boolean[] suitDeck = new boolean[Card.Value.values().length];
+
+        // Initialize the suitDeck
+        for (int i = 0; i < suitDeck.length; i++) {
+            suitDeck[i] = false;
+        }
+
         for (Card card : deck.getCards()) {
-            if (card.getCardSuit() == suit) {
+            if (card != null && card.getCardSuit() == suit) {
                 suitDeck[Card.getValueIndex(card.getCardValue())] = true;
             }
         }
 
         // Mark cards in player's hand and community cards as unavailable
         for (Card card : playerHand) {
-            if (card.getCardSuit() == suit) {
+            if (card != null && card.getCardSuit() == suit) {
                 suitDeck[Card.getValueIndex(card.getCardValue())] = false;
             }
         }
         for (Card card : communityCards) {
-            if (card.getCardSuit() == suit) {
+            if (card != null && card.getCardSuit() == suit) {
                 suitDeck[Card.getValueIndex(card.getCardValue())] = false;
             }
         }
@@ -385,17 +439,20 @@ public class ProbabilityCalculator {
     }
 
     private boolean isCardAvailable(Card.Value value, Card.Suit suit) {
-        // Check if a specific card is still in the deck or not already in the player's hand or community cards
+        // Check if a specific card is still in the player's hand
         for (Card card : playerHand) {
-            if (card.getCardValue() == value && card.getCardSuit() == suit) {
+            if (card != null && card.getCardValue() == value && card.getCardSuit() == suit) {
                 return false; // Card is in player's hand
             }
         }
+
+        // Check if the card is in community cards
         for (Card card : communityCards) {
-            if (card.getCardValue() == value && card.getCardSuit() == suit) {
+            if (card != null && card.getCardValue() == value && card.getCardSuit() == suit) {
                 return false; // Card is in community cards
             }
         }
+
         // Check if the card is still in the deck
         return deck.containsCard(new Card(value, suit));
     }
