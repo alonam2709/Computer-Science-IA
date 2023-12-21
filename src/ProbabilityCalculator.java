@@ -58,6 +58,7 @@ public class ProbabilityCalculator {
 
     private Fraction calculatePairProbability() {
         // Calculate the total number of possible outcomes from the remaining cards
+        System.out.println("Calculating Pair Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         // Array to count occurrences of each card value in the player's hand and on the table
@@ -97,6 +98,7 @@ public class ProbabilityCalculator {
     }
 
     private Fraction calculateTwoPairProbability() {
+        System.out.println("Calculating Two Pair Probability...");
         // Calculate the total number of possible outcomes
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
@@ -140,6 +142,7 @@ public class ProbabilityCalculator {
     }
 
     private Fraction calculateThreeOfAKindProbability() {
+        System.out.println("Calculating Three of a Kind Probability...");
         // Calculate the total number of possible outcomes from the remaining cards
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
@@ -153,7 +156,8 @@ public class ProbabilityCalculator {
         for (Card card : communityCards) {
             if (card != null) {
                 valueCounts[Card.getValueIndex(card.getCardValue())]++;
-            }        }
+            }
+        }
 
         int favorableOutcomes = 0;
 
@@ -175,6 +179,7 @@ public class ProbabilityCalculator {
         return new Fraction(favorableOutcomes, totalPossibleOutcomes);
     }
     private Fraction calculateStraightProbability() {
+        System.out.println("Calculating Straight Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         // Create an array to represent a simplified deck with just the card values
@@ -230,6 +235,7 @@ public class ProbabilityCalculator {
     }
 
     private Fraction calculateFlushProbability() {
+        System.out.println("Calculating Flush Probability...");
         // Calculate total possible outcomes from the remaining cards
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
@@ -265,6 +271,7 @@ public class ProbabilityCalculator {
     }
 
     private Fraction calculateFullHouseProbability() {
+        System.out.println("Calculating Full House Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         // Array to count occurrences of each card value in player's hand and community cards
@@ -316,6 +323,7 @@ public class ProbabilityCalculator {
         return valueCounts[valueIndex] >= 2 ? 1 : 0;
 }
     private Fraction calculateFourOfAKindProbability() {
+        System.out.println("Calculating Four of a Kind Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         // Array to count occurrences of each card value in player's hand and community cards
@@ -348,6 +356,7 @@ public class ProbabilityCalculator {
         return new Fraction(favorableOutcomes, totalPossibleOutcomes);
     }
     private Fraction calculateStraightFlushProbability() {
+        System.out.println("Calculating Straight Flush Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         int favorableOutcomes = 0;
@@ -411,6 +420,7 @@ public class ProbabilityCalculator {
         return true;
     }
     private Fraction calculateRoyalFlushProbability() {
+        System.out.println("Calculating Royal Flush Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         int favorableOutcomes = 0;
@@ -458,6 +468,7 @@ public class ProbabilityCalculator {
     }
 
     private Fraction calculateHighCardProbability() {
+        System.out.println("Calculating High Card Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
         // Calculate the probabilities of forming each hand type that is better than high card

@@ -17,8 +17,7 @@ public class Main {
 
         // Now you can use the calculator to compute probabilities or other game logic
         // For example, print out the probabilities:
-        System.out.println(calculator.toString());
-
+        System.out.println(calculator); // Implicitly calls calculator.toString()A
         scanner.close(); // Close the scanner when done
     }
 }
