@@ -30,7 +30,7 @@ public class Player {
             }
         }
     }
-
+/*
     public double calculateHandRank() { //adds the ranks out of the two and divides it by the highest possible hand AA
         int rank = 0;
         int maxRankForSingleCard = 14; // Assuming Ace has the highest rank of 14
@@ -85,7 +85,8 @@ public class Player {
         return (double) rank / maxHandRank; //Normalizing the rank
     }
 
-    @Override
+ */
+@Override
     public String toString() { //Change the hand to two string
         String handString = "Hand: ";
         if (hand[0] != null) {

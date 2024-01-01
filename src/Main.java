@@ -15,9 +15,8 @@ public class Main {
         // Initialize ProbabilityCalculator with the latest data
         ProbabilityCalculator calculator = new ProbabilityCalculator(player, table, deck);
 
-        // Now you can use the calculator to compute probabilities or other game logic
         // For example, print out the probabilities:
-        System.out.println(calculator); // Implicitly calls calculator.toString()A
+        System.out.println(calculator.toString());
         scanner.close(); // Close the scanner when done
     }
 }

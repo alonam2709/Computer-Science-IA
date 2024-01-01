@@ -96,9 +96,11 @@ public class ProbabilityCalculator {
         // Return the probability of forming a pair as a fraction
         return new Fraction(favorableOutcomes, totalPossibleOutcomes);
     }
-
     private Fraction calculateTwoPairProbability() {
         System.out.println("Calculating Two Pair Probability...");
+
+        long favorableOutcomes = 0; // Reset favorableOutcomes to 0
+
         // Calculate the total number of possible outcomes
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
 
@@ -116,9 +118,6 @@ public class ProbabilityCalculator {
         }
 
         // Count of favorable outcomes for getting exactly two pairs
-        int favorableOutcomes = 0;
-
-        // Calculate the number of ways to form two pairs
         for (int i = 0; i < valueCounts.length; i++) {
             if (valueCounts[i] == 1) {
                 // Count how many cards of the same value are still in the deck
@@ -140,6 +139,7 @@ public class ProbabilityCalculator {
         // Return the probability of forming exactly two pairs as a fraction
         return new Fraction(favorableOutcomes, totalPossibleOutcomes);
     }
+
 
     private Fraction calculateThreeOfAKindProbability() {
         System.out.println("Calculating Three of a Kind Probability...");
@@ -325,7 +325,6 @@ public class ProbabilityCalculator {
     private Fraction calculateFourOfAKindProbability() {
         System.out.println("Calculating Four of a Kind Probability...");
         long totalPossibleOutcomes = Combination.calculateCombinations(deck.remainingCards(), 5 - communityCards.length);
-
         // Array to count occurrences of each card value in player's hand and community cards
         int[] valueCounts = new int[Card.Value.values().length];
         for (Card card : playerHand) {
@@ -497,23 +496,27 @@ public class ProbabilityCalculator {
     public enum HandType {
         HIGH_CARD,PAIR, TWO_PAIR, THREE_OF_A_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH, ROYAL_FLUSH
     }
+
     @Override
     public String toString() {
+        System.out.println("Calculating To String");
         String result = "Based of Input:\n";
-        result += "Player Hand: " + player.toString() + "\n";
-        result += "Community Cards: " + table.toString() + "\n";
-        result += "\nTexas Hold'em Hand Probabilities:\n";
-        result += "High Card: " + calculateHighCardProbability() + "\n";
-        result += "One Pair: " + calculatePairProbability() + "\n";
-        result += "Two Pair: " + calculateTwoPairProbability() + "\n";
-        result += "Three of a Kind: " + calculateThreeOfAKindProbability() + "\n";
-        result += "Straight: " + calculateStraightProbability() + "\n";
-        result += "Flush: " + calculateFlushProbability() + "\n";
-        result += "Full House: " + calculateFullHouseProbability() + "\n";
-        result += "Four of a Kind: " + calculateFourOfAKindProbability() + "\n";
-        result += "Straight Flush: " + calculateStraightFlushProbability() + "\n";
-        result += "Royal Flush: " + calculateRoyalFlushProbability() + "\n";
-
+        result = result + "Player Hand: " + player.toString() + "\n";
+        result = result + "Community Cards: " + table.toString() + "\n";
+        result = result + "\nTexas Hold'em Hand Probabilities:\n";
+        result = result + "High Card: " + calculateHighCardProbability() + "\n";
+        result = result + "One Pair: " + calculatePairProbability() + "\n";
+        result = result + "Two Pair: " + calculateTwoPairProbability() + "\n";
+        result = result + "Three of a Kind: " + calculateThreeOfAKindProbability() + "\n";
+        result = result + "Straight: " + calculateStraightProbability() + "\n";
+        result = result + "Flush: " + calculateFlushProbability() + "\n";
+        result = result + "Full House: " + calculateFullHouseProbability() + "\n";
+        result = result + "Four of a Kind: " + calculateFourOfAKindProbability() + "\n";
+        result = result + "Straight Flush: " + calculateStraightFlushProbability() + "\n";
+        result = result + "Royal Flush: " + calculateRoyalFlushProbability() + "\n";
+        System.out.println(result);
         return result;
     }
+
+
 }
