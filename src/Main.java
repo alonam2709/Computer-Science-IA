@@ -16,7 +16,7 @@ public class Main {
         ProbabilityCalculator calculator = new ProbabilityCalculator(player, table, deck);
 
         // For example, print out the probabilities:
-        System.out.println(calculator.toString());
+        System.out.println(calculator);
         scanner.close(); // Close the scanner when done
     }
 }

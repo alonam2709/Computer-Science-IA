@@ -48,9 +48,12 @@ public class Fraction {
     public Fraction multiply(Fraction other) { // Creating a new fraction from two fractions
         return new Fraction(this.numerator * other.numerator, this.denominator * other.denominator);
     }
+
     @Override
     public String toString() {
         return numerator + "/" + denominator;
     }
+
+
 
 }

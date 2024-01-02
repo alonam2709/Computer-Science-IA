@@ -86,7 +86,7 @@ public class Table {
         }
     }
 
-    @Override
+  @Override
     public String toString() {
         String result = "Round State: " + roundState + "\nCommunity Cards: ";
 

@@ -82,11 +82,10 @@ public class Deck {
 
      */
 
-    public int countCardsWithSuit(Card.Suit suit) {
-        // Returns the count of how many cards of a given suit are left in the deck
+    public int countCardsOfSuit(Card.Suit suit) {
         int count = 0;
-        for (int i = 0; i < cardCount; i++) {
-            if (cards[i].getCardSuit() == suit) {
+        for (Card card : this.cards) {
+            if (card.getCardSuit() == suit) {
                 count++;
             }
         }
@@ -101,5 +100,13 @@ public class Deck {
         }
         return false;
     }
-
+    public int countCardsOfValueAndSuit(Card.Value value, Card.Suit suit) {
+        int count = 0;
+        for (Card card : this.cards) {
+            if (card.getCardValue() == value && card.getCardSuit() == suit) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
