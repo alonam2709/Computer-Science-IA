@@ -62,11 +62,10 @@ public class Card {
     public void setCardSuit(Suit cardSuit) {
         this.cardSuit = cardSuit;
     }
-/*
+
     @Override
     public String toString() {
         return cardValue + " of " + cardSuit;
     }
 
- */
 }

@@ -4,14 +4,18 @@ public class Fraction {
     public Fraction(long numerator, long denominator) {
         this.setNumerator(numerator);
         this.setDenominator(denominator);
-        this.cancel();
+        //this.cancel();
     }
+    /*
     public void cancel() // simplifies the fraction
+
     {
         long gcd = gcd(this.getNumerator(), this.getDenominator());
         this.setNumerator(this.getNumerator() / gcd);
         this.setDenominator(this.getDenominator() / gcd);
     }
+
+     */
 
     // calculate the GCD to simplify a fraction
     private static long gcd(long n, long m) {
@@ -51,7 +55,7 @@ public class Fraction {
 
     @Override
     public String toString() {
-        return numerator + "/" + denominator;
+        return this.numerator + "/" + this.denominator;
     }
 
 
